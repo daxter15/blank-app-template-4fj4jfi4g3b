@@ -72,7 +72,7 @@ current_wind_kmh = str((weather_api_pull.json()['current']['wind_speed_10m'])), 
 # st.metric(label, value, delta=None, delta_color="normal", help=None, label_visibility="visible")
 # st.metric("Temperature", current_temp, delta=yesterday_temp_compare)
 
-st.metric("Temperature", current_temp_deg[0])
+st.metric("Temperature", current_temp_deg[0], current_temp_deg[1])
 
-st.metric("Wind Speed", current_wind_kmh[0])
+st.metric("Wind Speed", current_wind_kmh[0], current_wind_kmh[1])
 
