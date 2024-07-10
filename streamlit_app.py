@@ -1,21 +1,15 @@
-import streamlit as st
-
-st.title("🎈 My new app")
-st.write(
-    "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
-)
-    # Weather API Python
+# Weather API Python
 
 import requests
 
-import json
+#import json
 
 import streamlit as st
 # pip install streamlit (wrap in try to install ??)
 
 # 50.819965116480034, -1.212066575041191
 lat = "50.81"
-long = "-1.21"
+long = "-1.21ccc"
 
 # r = requests.get("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m")
 
@@ -24,50 +18,36 @@ weather_api_pull = requests.get(f"https://api.open-meteo.com/v1/forecast?latitud
 if weather_api_pull.status_code == 404:
     print("Unable to contact Weather API")
     print(weather_api_pull.status_code)
-    exit()
+    current_temp_deg_str = "Unable to contact Weather API"
+    current_wind_mph_str = "Unable to contact Weather API"
+else:
+    print(type(weather_api_pull.json()))
+    print(weather_api_pull.json())
+    print(((weather_api_pull.json().keys())))
+    # get the current temp
+    print(((weather_api_pull.json()['current']['temperature_2m'])))
+    # get the current temp units
+    print(((weather_api_pull.json()['current_units']['temperature_2m'])))
+    # get the current wind_speed
+    print(((weather_api_pull.json()['current']['wind_speed_10m'])))
+    # get the current wind speed units
+    print(((weather_api_pull.json()['current_units']['wind_speed_10m'])))
+    # Put em together and whaddya get...
+    # Temp
+    print(((weather_api_pull.json()['current']['temperature_2m'])), ((weather_api_pull.json()['current_units']['temperature_2m'])))
+    current_temp_deg = str((weather_api_pull.json()['current']['temperature_2m'])), ((weather_api_pull.json()['current_units']['temperature_2m']))
+    current_temp_deg_str = str(str(current_temp_deg[0]) + current_temp_deg[1]) # Convert to string for use with st.metrics later
 
-print(type(weather_api_pull.json()))
-print(weather_api_pull.json())
-print(((weather_api_pull.json().keys())))
-# get the current temp
-print(((weather_api_pull.json()['current']['temperature_2m'])))
-# get the current temp units
-print(((weather_api_pull.json()['current_units']['temperature_2m'])))
-# get the current wind_speed
-print(((weather_api_pull.json()['current']['wind_speed_10m'])))
-# get the current wind speed units
-print(((weather_api_pull.json()['current_units']['wind_speed_10m'])))
-# Put em together and whaddya get...
-# Temp
-print(((weather_api_pull.json()['current']['temperature_2m'])), ((weather_api_pull.json()['current_units']['temperature_2m'])))
-current_temp_deg = str((weather_api_pull.json()['current']['temperature_2m'])), ((weather_api_pull.json()['current_units']['temperature_2m']))
-current_temp_deg_str = str(str(current_temp_deg[0]) + current_temp_deg[1]) # Convert to string for use with st.metrics later
+    # Wind Speed
 
-# Wind Speed
+    print(((weather_api_pull.json()['current']['wind_speed_10m'])), ((weather_api_pull.json()['current_units']['wind_speed_10m'])))
 
-print(((weather_api_pull.json()['current']['wind_speed_10m'])), ((weather_api_pull.json()['current_units']['wind_speed_10m'])))
-### Convert to mph?
-current_wind_kmh = str((weather_api_pull.json()['current']['wind_speed_10m'])), ((weather_api_pull.json()['current_units']['wind_speed_10m']))
-current_wind_kmh_str = str(str(current_wind_kmh[0]) + current_wind_kmh[1]) # Convert to string for use with st.metrics later
-
-
-
-
-#$ curl "https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m"
-
-# {
-#   "current": {
-#     "time": "2022-01-01T15:00"
-#     "temperature_2m": 2.4,
-#     "wind_speed_10m": 11.9,
-#   },
-#   "hourly": {
-#     "time": ["2022-07-01T00:00","2022-07-01T01:00", ...]
-#     "wind_speed_10m": [3.16,3.02,3.3,3.14,3.2,2.95, ...],
-#     "temperature_2m": [13.7,13.3,12.8,12.3,11.8, ...],
-#     "relative_humidity_2m": [82,83,86,85,88,88,84,76, ...],
-#   }
-# }
+    current_wind_kmh = str((weather_api_pull.json()['current']['wind_speed_10m'])), ((weather_api_pull.json()['current_units']['wind_speed_10m']))
+    current_wind_kmh_str = str(str(current_wind_kmh[0]) + current_wind_kmh[1]) # Convert to string for use with st.metrics later
+    # Convert to mph
+    current_wind_mph = round((((weather_api_pull.json()['current']['wind_speed_10m'])) / 1.609344), 1) # Current kmh / 1.609344 for mph
+    current_wind_mph_str = (str(current_wind_mph) + "mph") # Convert float to str, then concatenate
+    #print(current_wind_mph_str)
 
 
 ## Streamlit metrics
@@ -76,5 +56,4 @@ current_wind_kmh_str = str(str(current_wind_kmh[0]) + current_wind_kmh[1]) # Con
 
 st.metric("Temperature", current_temp_deg_str)
 
-st.metric("Wind Speed", current_wind_kmh_str)
-
+st.metric("Wind Speed", current_wind_mph_str)
