@@ -9,7 +9,7 @@ import streamlit as st
 
 # 50.819965116480034, -1.212066575041191
 lat = "50.81"
-long = "-1.21ccc"
+long = "-1.21"
 
 # r = requests.get("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m")
 
