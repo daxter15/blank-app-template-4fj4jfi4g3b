@@ -17,3 +17,6 @@ A simple Streamlit app template for you to modify!
    ```
    $ streamlit run streamlit_app.py
    ```
+
+3.  Access the web host
+   https://blank-app-template-4fj4jfi4g3b.streamlit.app/#7700d050
