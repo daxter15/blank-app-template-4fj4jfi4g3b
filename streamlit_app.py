@@ -41,12 +41,14 @@ print(((weather_api_pull.json()['current_units']['wind_speed_10m'])))
 # Temp
 print(((weather_api_pull.json()['current']['temperature_2m'])), ((weather_api_pull.json()['current_units']['temperature_2m'])))
 current_temp_deg = str((weather_api_pull.json()['current']['temperature_2m'])), ((weather_api_pull.json()['current_units']['temperature_2m']))
+current_temp_deg_str = str(str(current_temp_deg[0]) + current_temp_deg[1]) # Convert to string for use with st.metrics later
 
 # Wind Speed
 
 print(((weather_api_pull.json()['current']['wind_speed_10m'])), ((weather_api_pull.json()['current_units']['wind_speed_10m'])))
 ### Convert to mph?
 current_wind_kmh = str((weather_api_pull.json()['current']['wind_speed_10m'])), ((weather_api_pull.json()['current_units']['wind_speed_10m']))
+current_wind_kmh_str = str(str(current_wind_kmh[0]) + current_wind_kmh[1]) # Convert to string for use with st.metrics later
 
 
 
@@ -72,7 +74,7 @@ current_wind_kmh = str((weather_api_pull.json()['current']['wind_speed_10m'])), 
 # st.metric(label, value, delta=None, delta_color="normal", help=None, label_visibility="visible")
 # st.metric("Temperature", current_temp, delta=yesterday_temp_compare)
 
-st.metric("Temperature", (current_temp_deg[0], current_temp_deg[1]))
+st.metric("Temperature", current_temp_deg_str)
 
-st.metric("Wind Speed", (current_wind_kmh[0], current_wind_kmh[1]))
+st.metric("Wind Speed", current_wind_kmh_str)
 
