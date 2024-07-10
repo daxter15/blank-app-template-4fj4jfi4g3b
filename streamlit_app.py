@@ -15,7 +15,9 @@ long = "-1.21ccc"
 
 weather_api_pull = requests.get(f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={long}&current=temperature_2m,wind_speed_10m")
 
-if weather_api_pull.status_code == 404:
+print(weather_api_pull.status_code)
+
+if weather_api_pull.status_code != 200: # If status other than 200, then show error message
     print("Unable to contact Weather API")
     print(weather_api_pull.status_code)
     current_temp_deg_str = "Unable to contact Weather API"
