@@ -7,9 +7,12 @@ import requests
 import streamlit as st
 # pip install streamlit (wrap in try to install ??)
 
+st.title("Weather API App")
+st.write("Current Weather:")
+
 # 50.819965116480034, -1.212066575041191
 lat = "50.81"
-long = "-1.21"
+long = "-1.21ccc"
 
 # r = requests.get("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m")
 
