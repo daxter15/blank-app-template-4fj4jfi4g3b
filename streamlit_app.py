@@ -17,6 +17,12 @@ st.write("Current Weather:")
 lat = "50.81"
 long = "-1.21"
 
+
+def conv_kmh_mph(kmh):
+    global mph
+    mph = round((kmh / 1.609344), 1)
+    return str(mph)
+
 # r = requests.get("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m")
 
 weather_api_pull = requests.get(f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={long}&current=temperature_2m,wind_speed_10m")
@@ -83,20 +89,25 @@ else:
 # st.metric(label, value, delta=None, delta_color="normal", help=None, label_visibility="visible")
 # st.metric("Temperature", current_temp, delta=yesterday_temp_compare)
 
-# Get yesterdays details
+# Get yesterdays details temp
 previous_day_weather_api_pull = requests.get(f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={long}&past_days=1&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m")
 #previous_day = previous_day_weather_api_pull.json()
 print(previous_day_weather_api_pull.json())
-# find the current hour
 
+# find the current hour
 from datetime import datetime
 #print(datetime.now())
 #print(datetime.now().hour)
 yesterday_now_temp = (previous_day_weather_api_pull.json()['hourly']['temperature_2m'][((datetime.now().hour) -1)])
 #print(yesterday_now_temp)
+yesterday_now_wind = (previous_day_weather_api_pull.json()['hourly']['wind_speed_10m'][((datetime.now().hour) -1)])
+# convert to mph
+yesterday_now_wind_mph = conv_kmh_mph(yesterday_now_wind)
+#print(yesterday_now_wind)
+#print(yesterday_now_wind_mph)
 
 
 st.metric("Temperature", current_temp_deg_str, yesterday_now_temp)
 
-st.metric("Wind Speed", current_wind_mph_str)
+st.metric("Wind Speed", current_wind_mph_str, yesterday_now_wind_mph)
 
