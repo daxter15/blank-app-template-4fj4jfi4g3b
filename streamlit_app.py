@@ -3,7 +3,7 @@ import streamlit as st
 st.title("🎈 My new app")
 st.write(
     "Let's start building! For help and inspiration, head over to [docs.streamlit.io](https://docs.streamlit.io/)."
-
+)
     # Weather API Python
 
 import requests
@@ -76,9 +76,3 @@ st.metric("Temperature", current_temp_deg)
 
 st.metric("Wind Speed", current_wind_kmh)
 
-
-
-
-
-
-)
