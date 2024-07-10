@@ -9,7 +9,7 @@ import time
 import streamlit as st
 # pip install streamlit (wrap in try to install ??)
 
-st.title("Weather API App")
+st.title("Weather API App :mostly_sunny:")
 st.write("Current Weather:")
 
 
