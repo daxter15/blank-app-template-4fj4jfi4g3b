@@ -9,7 +9,7 @@ import streamlit as st
 
 
 title_str = ("Weather API App :mostly_sunny:")# declared here as variable due to the function use later.
-st.title(title_str)
+st.title(title_str, )
 st.write("Current Weather:")
 
 
@@ -113,10 +113,13 @@ yesterday_wind_compare = round((float(current_wind_mph) - float(yesterday_now_wi
 #print(yesterday_now_wind_mph)
 
 
-st.metric("Temperature", current_temp_deg_str, yesterday_temp_compare)
+# Adding columns
+col1, col2 = st.columns(2)
+
+col1.metric("Temperature", current_temp_deg_str, yesterday_temp_compare)
 ### Delta should be the differential between current and previous (otherwise it always flags as a positive change)
 
-st.metric("Wind Speed", current_wind_mph_str, yesterday_wind_compare)
+col2.metric("Wind Speed", current_wind_mph_str, yesterday_wind_compare)
 
 #### ----- ####
 # Add A Button to update results (test)
