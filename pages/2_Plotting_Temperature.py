@@ -1,6 +1,4 @@
 import streamlit as st
-import time
-import numpy as np
 import requests
 
 st.set_page_config(page_title="Temperature 10 day plot", page_icon="📈")
@@ -26,7 +24,7 @@ print(type(temperature_api.json()['hourly']))
 print(temperature_api.json()['hourly'].keys())
 
 #chart = st.line_chart(temperature_api.json()['hourly']['time'][:], temperature_api.json()['hourly']['temperature_2m'][:], "Date and Time", "Temperature (°C)")
-#chart = st.line_chart(temperature_api.json()['hourly']['temperature_2m'], "Date and Time", "Temperature (°C)")
+##chart = st.line_chart(temperature_api.json()['hourly']['temperature_2m'], "Date and Time", "Temperature (°C)")
 
 chart = st.line_chart((temperature_api.json()['hourly']['temperature_2m']))
 #print(type((temperature_api.json()['hourly']['temperature_2m'])))
