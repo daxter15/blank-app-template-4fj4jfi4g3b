@@ -113,7 +113,7 @@ yesterday_wind_compare = round((float(current_wind_mph) - float(yesterday_now_wi
 #print(yesterday_now_wind_mph)
 
 ## Humidity
-current_humidity_str = str((weather_api_pull.json()['current']['relative_humidity_2m'])), ((weather_api_pull.json()['current_units']['relative_humidity_2m']))
+current_humidity_str = str((weather_api_pull.json()['current']['relative_humidity_2m'])) + ((weather_api_pull.json()['current_units']['relative_humidity_2m']))
 current_humidity = (weather_api_pull.json()['current']['relative_humidity_2m'])
 print(current_humidity)
 yesterday_now_humidity = (previous_day_weather_api_pull.json()['hourly']['relative_humidity_2m'][((datetime.now().hour) -1)])
