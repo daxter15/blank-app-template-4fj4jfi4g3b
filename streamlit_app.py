@@ -100,14 +100,21 @@ from datetime import datetime
 #print(datetime.now().hour)
 yesterday_now_temp = (previous_day_weather_api_pull.json()['hourly']['temperature_2m'][((datetime.now().hour) -1)])
 #print(yesterday_now_temp)
+yesterday_temp_compare = round((float(current_temp_deg[0]) - yesterday_now_temp), 1)
+#print(type(current_temp_deg[0]))
+#print(current_temp_deg[0])
+#print(yesterday_temp_compare)
 yesterday_now_wind = (previous_day_weather_api_pull.json()['hourly']['wind_speed_10m'][((datetime.now().hour) -1)])
 # convert to mph
 yesterday_now_wind_mph = conv_kmh_mph(yesterday_now_wind)
-#print(yesterday_now_wind)
+#print(yesterday_now_wind_mph)
+yesterday_wind_compare = round((float(current_wind_mph) - float(yesterday_now_wind_mph)), 1)
+#print(yesterday_wind_compare)
 #print(yesterday_now_wind_mph)
 
 
-st.metric("Temperature", current_temp_deg_str, yesterday_now_temp)
+st.metric("Temperature", current_temp_deg_str, yesterday_temp_compare)
+### Delta should be the differential between current and previous (otherwise it always flags as a positive change)
 
 st.metric("Wind Speed", current_wind_mph_str, yesterday_now_wind_mph)
 
