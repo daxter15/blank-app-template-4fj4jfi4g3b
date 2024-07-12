@@ -12,6 +12,8 @@ title_str = ("Weather API App :mostly_sunny:")# declared here as variable due to
 st.title(title_str)
 st.header("Current Weather:")
 
+st.sidebar.success("Select a page.")
+
 
 # 50.819965116480034, -1.212066575041191
 lat = "50.81"
