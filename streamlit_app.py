@@ -9,8 +9,8 @@ import streamlit as st
 
 
 title_str = ("Weather API App :mostly_sunny:")# declared here as variable due to the function use later.
-st.title(title_str, )
-st.write("Current Weather:")
+st.title(title_str)
+st.header("Current Weather:")
 
 
 # 50.819965116480034, -1.212066575041191
@@ -25,7 +25,7 @@ def conv_kmh_mph(kmh):
 
 # r = requests.get("https://api.open-meteo.com/v1/forecast?latitude=52.52&longitude=13.41&current=temperature_2m,wind_speed_10m&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m")
 
-weather_api_pull = requests.get(f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={long}&current=temperature_2m,wind_speed_10m")
+weather_api_pull = requests.get(f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={long}&current=temperature_2m,wind_speed_10m,relative_humidity_2m")
 #### Add in humidity again?
 ### "relative_humidity_2m"
 
@@ -112,14 +112,24 @@ yesterday_wind_compare = round((float(current_wind_mph) - float(yesterday_now_wi
 #print(yesterday_wind_compare)
 #print(yesterday_now_wind_mph)
 
+## Humidity
+current_humidity_str = str((weather_api_pull.json()['current']['relative_humidity_2m'])), ((weather_api_pull.json()['current_units']['relative_humidity_2m']))
+current_humidity = (weather_api_pull.json()['current']['relative_humidity_2m'])
+print(current_humidity)
+yesterday_now_humidity = (previous_day_weather_api_pull.json()['hourly']['relative_humidity_2m'][((datetime.now().hour) -1)])
+yesterday_humidity_compare =  (int(current_humidity) - int(yesterday_now_humidity))
+
+
 
 # Adding columns
-col1, col2 = st.columns(2)
+col1, col2, col3 = st.columns(2)
 
 col1.metric("Temperature", current_temp_deg_str, yesterday_temp_compare)
 ### Delta should be the differential between current and previous (otherwise it always flags as a positive change)
 
 col2.metric("Wind Speed", current_wind_mph_str, yesterday_wind_compare)
+
+col3.metric("Humidity", current_humidity_str, yesterday_humidity_compare)
 
 #### ----- ####
 # Add A Button to update results (test)
