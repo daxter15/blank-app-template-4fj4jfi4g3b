@@ -28,14 +28,16 @@ print(temperature_api.json()['hourly'].keys())
 #chart = st.line_chart(temperature_api.json()['hourly']['time'][:], temperature_api.json()['hourly']['temperature_2m'][:], "Date and Time", "Temperature (°C)")
 #chart = st.line_chart(temperature_api.json()['hourly']['temperature_2m'], "Date and Time", "Temperature (°C)")
 
-chart = st.line_chart()
+chart = st.line_chart((temperature_api.json()['hourly']['temperature_2m']))
+#print(type((temperature_api.json()['hourly']['temperature_2m'])))
+#print((temperature_api.json()['hourly']['temperature_2m']))
 
-for i in (temperature_api.json()['hourly']['temperature_2m'][:]):
-    new_rows = last_rows + i
-    chart.add_rows(new_rows)
-    last_rows = new_rows
+# for i in (temperature_api.json()['hourly']['temperature_2m'][:]):
+#     print(str(i))
+#     new_rows = last_rows + str(i)
+#     chart.add_rows(new_rows)
+#     last_rows = new_rows
 
-print(chart)
 #   progress_bar.progress(i)    
 
 
@@ -47,7 +49,6 @@ print(chart)
 #     last_rows = new_rows
 #     time.sleep(0.05)
 
-chart = st.line_chart()
 
 
 progress_bar.empty()
