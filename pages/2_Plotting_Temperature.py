@@ -32,7 +32,7 @@ chart = st.line_chart()
 
 for i in (temperature_api.json()['hourly']['temperature_2m'][:]):
     new_rows = last_rows + i
-    chart.add_rows(i)
+    chart.add_rows(new_rows)
     last_rows = new_rows
 
 print(chart)
