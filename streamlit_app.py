@@ -122,9 +122,7 @@ st.metric("Wind Speed", current_wind_mph_str, yesterday_wind_compare)
 # Add A Button to update results (test)
 #https://docs.streamlit.io/develop/api-reference/widgets/st.button
 
-
-def secret_button_title_change():
-    title_str_list = [
+title_str_list = [
         ":mostly_sunny:",
         ":sun_small_cloud:",
         ":barely_sunny:",
@@ -140,19 +138,22 @@ def secret_button_title_change():
         ":umbrella:",
         ":snowflake:"
         ]
+
+def secret_button_title_change():
+    
     global title_str
     title_str = ("Weather API App " + (choice(title_str_list))) # Use choice to select a random title emoji from list
     ## Add in check to avoid duplicate meaning no change?
 
-    
+
     st.title(title_str) # Does not work...adds a new title..
-    x = st.slider('x', 1, 13)
-    st.write(title_str_list[x])
     
 
 if st.button("'Secret' Button...:grey_question:", "button_1_secret", "Secret button does secret things..."):
     secret_button_title_change() # Does not work... adds a new Title..
 
+x = st.slider('Secrets!!', 1, 13)
+st.write(title_str_list[x])
 
 
 
