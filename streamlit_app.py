@@ -142,7 +142,7 @@ def secret_button_title_change():
         ]
     global title_str
     title_str = ("Weather API App " + (choice(title_str_list))) # Use choice to select a random title emoji from list
-    return title_str ### required??
+    st.title(title_str)
     ## Add in check to avoid duplicate meaning no change?
 
 if st.button("'Secret' Button...:grey_question:", "button_1_secret", "Secret button does secret things..."):
