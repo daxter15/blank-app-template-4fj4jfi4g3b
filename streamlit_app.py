@@ -92,7 +92,7 @@ else:
 # Get yesterdays details temp
 previous_day_weather_api_pull = requests.get(f"https://api.open-meteo.com/v1/forecast?latitude={lat}&longitude={long}&past_days=1&hourly=temperature_2m,relative_humidity_2m,wind_speed_10m")
 #previous_day = previous_day_weather_api_pull.json()
-print(previous_day_weather_api_pull.json())
+#print(previous_day_weather_api_pull.json())
 
 # find the current hour
 from datetime import datetime
@@ -116,5 +116,5 @@ yesterday_wind_compare = round((float(current_wind_mph) - float(yesterday_now_wi
 st.metric("Temperature", current_temp_deg_str, yesterday_temp_compare)
 ### Delta should be the differential between current and previous (otherwise it always flags as a positive change)
 
-st.metric("Wind Speed", current_wind_mph_str, yesterday_now_wind_mph)
+st.metric("Wind Speed", current_wind_mph_str, yesterday_wind_compare)
 
