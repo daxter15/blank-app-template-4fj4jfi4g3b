@@ -154,13 +154,12 @@ title_str_list = [
         ":snowflake:"
         ]
 
+@st.cache_data
 def secret_button_title_change():
     
     global title_str
     title_str = ("Weather API App " + (choice(title_str_list))) # Use choice to select a random title emoji from list
     ## Add in check to avoid duplicate meaning no change?
-
-
     st.title(title_str) # Does not work...adds a new title..
     
 
