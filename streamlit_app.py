@@ -1,15 +1,15 @@
 # Weather API Python
 
 import requests
-
 #import json
-
-import time
+from random import choice
 
 import streamlit as st
 # pip install streamlit (wrap in try to install ??)
 
-st.title("Weather API App :mostly_sunny:")
+
+title_str = ("Weather API App :mostly_sunny:")# declared here as variable due to the function use later.
+st.title(title_str)
 st.write("Current Weather:")
 
 
@@ -118,3 +118,37 @@ st.metric("Temperature", current_temp_deg_str, yesterday_temp_compare)
 
 st.metric("Wind Speed", current_wind_mph_str, yesterday_wind_compare)
 
+#### ----- ####
+# Add A Button to update results (test)
+#https://docs.streamlit.io/develop/api-reference/widgets/st.button
+
+
+def secret_button_title_change():
+    title_str_list = [
+        ":mostly_sunny:",
+        ":sun_small_cloud:",
+        ":barely_sunny:",
+        ":sun_behind_cloud:",
+        ":partly_sunny_rain:",
+        ":sun_behind_rain_cloud:",
+        ":rain_cloud:",
+        ":snow_cloud:",
+        ":lightning:",
+        ":lightning_cloud:",
+        ":sunny:",
+        ":cloud:",
+        ":umbrella:",
+        ":snowflake:"
+        ]
+    global title_str
+    title_str = ("Weather API App " + (choice(title_str_list))) # Use choice to select a random title emoji from list
+    return title_str ### required??
+    ## Add in check to avoid duplicate meaning no change?
+
+if st.button("'Secret' Button...:grey_question:", "button_1_secret", "Secret button does secret things..."):
+    secret_button_title_change()
+
+
+
+
+#### ----- ####
