@@ -122,7 +122,7 @@ yesterday_humidity_compare =  (int(current_humidity) - int(yesterday_now_humidit
 
 
 # Adding columns
-col1, col2, col3 = st.columns(2)
+col1, col2, col3 = st.columns(3)
 
 col1.metric("Temperature", current_temp_deg_str, yesterday_temp_compare)
 ### Delta should be the differential between current and previous (otherwise it always flags as a positive change)
