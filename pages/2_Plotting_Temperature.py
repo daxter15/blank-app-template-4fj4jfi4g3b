@@ -26,7 +26,17 @@ print(temperature_api.json()['hourly'].keys())
 #chart = st.line_chart(temperature_api.json()['hourly']['time'][:], temperature_api.json()['hourly']['temperature_2m'][:], "Date and Time", "Temperature (°C)")
 ##chart = st.line_chart(temperature_api.json()['hourly']['temperature_2m'], "Date and Time", "Temperature (°C)")
 
-chart = st.line_chart((temperature_api.json()['hourly']['temperature_2m']))
+chart_data = ((temperature_api.json()['hourly']['temperature_2m']))
+#print(type(chart_data))
+#print(chart_data[:])
+chart = st.line_chart(chart_data)
+
+# for i in chart_data:
+#     new_rows = last_rows[-1, :] + i
+#     chart.add_rows(new_rows)
+#     last_rows = new_rows
+#     #time.sleep(0.05)
+
 #print(type((temperature_api.json()['hourly']['temperature_2m'])))
 #print((temperature_api.json()['hourly']['temperature_2m']))
 
