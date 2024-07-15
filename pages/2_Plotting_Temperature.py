@@ -9,8 +9,8 @@ st.write(
     """This shows a plot of the temperature for the last 10 days."""
 )
 
-progress_bar = st.sidebar.progress(0)
-status_text = st.sidebar.empty()
+#progress_bar = st.sidebar.progress(0)
+#status_text = st.sidebar.empty()
 #last_rows = np.random.randn(1, 1)
 
 
@@ -29,7 +29,7 @@ print(temperature_api.json()['hourly'].keys())
 chart_data = ((temperature_api.json()['hourly']['temperature_2m']))
 #print(type(chart_data))
 #print(chart_data[:])
-chart = st.line_chart(chart_data)
+### chart = st.line_chart(chart_data) ## Removed as updated by chart2 with more details.
 chart_data = ((temperature_api.json()['hourly']['temperature_2m']))
 chart2 = st.line_chart((temperature_api.json()['hourly']), x='time', y='temperature_2m', x_label='Time', y_label='Temperature')
 #chart2 = st.line_chart(chart_data_dict_test, "temperature_2m", "time")
