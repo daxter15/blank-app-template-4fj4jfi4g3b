@@ -32,6 +32,9 @@ chart_data = ((temperature_api.json()['hourly']['temperature_2m']))
 ### chart = st.line_chart(chart_data) ## Removed as updated by chart2 with more details.
 chart_data = ((temperature_api.json()['hourly']['temperature_2m']))
 chart2 = st.line_chart((temperature_api.json()['hourly']), x='time', y='temperature_2m', x_label='Time', y_label='Temperature')
+### why is this plotting future dates?....
+### Seems to pull from 5th (correct as 15th at time of writing) to the 21st...
+
 #chart2 = st.line_chart(chart_data_dict_test, "temperature_2m", "time")
 
 # Streamlit widgets automatically run the script from top to bottom. Since

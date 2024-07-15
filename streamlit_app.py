@@ -169,6 +169,7 @@ if st.button("'Secret' Button...:grey_question:", "button_1_secret", "Secret but
 x = st.slider('Secrets!!', 1, 13)
 st.write(title_str_list[x])
 
+st.button("Refresh")
 
 
 
