@@ -30,36 +30,9 @@ chart_data = ((temperature_api.json()['hourly']['temperature_2m']))
 #print(type(chart_data))
 #print(chart_data[:])
 chart = st.line_chart(chart_data)
-
-# for i in chart_data:
-#     new_rows = last_rows[-1, :] + i
-#     chart.add_rows(new_rows)
-#     last_rows = new_rows
-#     #time.sleep(0.05)
-
-#print(type((temperature_api.json()['hourly']['temperature_2m'])))
-#print((temperature_api.json()['hourly']['temperature_2m']))
-
-# for i in (temperature_api.json()['hourly']['temperature_2m'][:]):
-#     print(str(i))
-#     new_rows = last_rows + str(i)
-#     chart.add_rows(new_rows)
-#     last_rows = new_rows
-
-#   progress_bar.progress(i)    
-
-
-# for i in range(1, 101):
-#     new_rows = last_rows[-1, :] + np.random.randn(5, 1).cumsum(axis=0)
-#     status_text.text("%i%% Complete" % i)
-#     chart.add_rows(new_rows)
-#     progress_bar.progress(i)
-#     last_rows = new_rows
-#     time.sleep(0.05)
-
-
-
-progress_bar.empty()
+chart_data = ((temperature_api.json()['hourly']['temperature_2m']))
+chart2 = st.line_chart((temperature_api.json()['hourly']), x='time', y='temperature_2m', x_label='Time', y_label='Temperature')
+#chart2 = st.line_chart(chart_data_dict_test, "temperature_2m", "time")
 
 # Streamlit widgets automatically run the script from top to bottom. Since
 # this button is not connected to any other logic, it just causes a plain
